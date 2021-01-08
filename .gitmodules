@@ -1,0 +1,3 @@
+[submodule "shuangpin-heatmap"]
+	path = shuangpin-heatmap
+	url = https://github.com/district10/shuangpin-heatmap.git
