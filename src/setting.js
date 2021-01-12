@@ -94,8 +94,8 @@ Shuang.app.setting = {
     this.updateKeysHint()
   },
   updateKeysHint() {
-    if (this.config.showKeys === 'false') return
     console.log(`marked #${jQuery(".hint").length} keys`);
+    if (this.config.showKeys === 'false') return
     jQuery('.hint').removeClass('hint');
     for (const [sheng, yun] of Shuang.core.current.scheme) {
       console.log(sheng, yun);
