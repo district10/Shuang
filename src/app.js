@@ -497,7 +497,7 @@ Shuang.app.setting = {
         tips.appendChild(newLine)
       }
     }
-    $('#pic').setAttribute('src', `img/${this.config.scheme}.png`)
+    $('#pic').setAttribute('src', `shuangpin-heatmap/svgs/dvorak/${this.config.scheme}.svg`)
   }
 }
 
