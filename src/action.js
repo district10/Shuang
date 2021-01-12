@@ -32,12 +32,7 @@ Shuang.app.action = {
         .map(scheme => scheme.slice(0, -2))
     }
     const schemeOptions = [
-      { disabled: true, text: '常见' },
       ...schemes.common,
-      { disabled: true, text: '小众' },
-      ...schemes.uncommon,
-      { disabled: true, text: '爱好者' },
-      ...schemes.rare,
     ]
 
     renderSelect($('#scheme-select'), schemeOptions, value => {
@@ -66,9 +61,6 @@ Shuang.app.action = {
     $('#pic-switcher').addEventListener('change', e => {
       Shuang.app.setting.setPicVisible(e.target.checked)
     })
-    $('#dark-mode-switcher').addEventListener('change', e => {
-      Shuang.app.setting.setDarkMode(e.target.checked)
-    })
     $('#auto-next-switcher').addEventListener('change', e => {
       Shuang.app.setting.setAutoNext(e.target.checked)
     })
@@ -77,33 +69,6 @@ Shuang.app.action = {
     })
     $('#show-keys').addEventListener('change', e => {
       Shuang.app.setting.setShowKeys(e.target.checked)
-    })
-    $('.pay-name#alipay').addEventListener('mouseover', () => {
-      Shuang.app.action.qrShow('alipay-qr')
-    })
-    $('#alipay-qr').addEventListener('click', e => {
-      Shuang.app.action.qrHide(e.target)
-    })
-    $('#alipay-qr').addEventListener('mouseout', e => {
-      Shuang.app.action.qrHide(e.target)
-    })
-    $('.pay-name#wxpay').addEventListener('mouseover', () => {
-      Shuang.app.action.qrShow('wxpay-qr')
-    })
-    $('#wxpay-qr').addEventListener('click', e => {
-      Shuang.app.action.qrHide(e.target)
-    })
-    $('#wxpay-qr').addEventListener('mouseout', e => {
-      Shuang.app.action.qrHide(e.target)
-    })
-    $('#wx-name').addEventListener('mouseover', () => {
-      Shuang.app.action.qrShow('wx-qr')
-    })
-    $('#wx-qr').addEventListener('click', e => {
-      Shuang.app.action.qrHide(e.target)
-    })
-    $('#wx-qr').addEventListener('mouseout', e => {
-      Shuang.app.action.qrHide(e.target)
     })
     $('#dict').addEventListener('click', () => {
       Shuang.core.current.beforeJudge()

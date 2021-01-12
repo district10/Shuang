@@ -72,13 +72,13 @@ Shuang.app.setting = {
     writeStorage('showPic', this.config.showPic)
   },
   setDarkMode(bool) {
-    this.config.darkMode = bool.toString()
-    if (this.config.darkMode === 'true') {
-      $('body').setAttribute('class', 'dark-mode')
-    } else if (this.config.darkMode === 'false') {
-      $('body').setAttribute('class', '')
-    }
-    writeStorage('darkMode', this.config.darkMode)
+    // this.config.darkMode = bool.toString()
+    // if (this.config.darkMode === 'true') {
+    //   $('body').setAttribute('class', 'dark-mode')
+    // } else if (this.config.darkMode === 'false') {
+    //   $('body').setAttribute('class', '')
+    // }
+    // writeStorage('darkMode', this.config.darkMode)
   },
   setAutoNext(bool) {
     this.config.autoNext = bool.toString()
@@ -94,14 +94,19 @@ Shuang.app.setting = {
     this.updateKeysHint()
   },
   updateKeysHint() {
-    const keys = $$('.key')
-    keys.forEach((key) => key.style.visibility = 'hidden')
     if (this.config.showKeys === 'false') return
-    const qwerty = 'qwertyuiopasdfghjkl;zxcvbnm'
+    console.log(`marked #${jQuery(".hint").length} keys`);
+    jQuery('.hint').removeClass('hint');
     for (const [sheng, yun] of Shuang.core.current.scheme) {
-      keys[qwerty.indexOf(sheng)].style.visibility = 'visible'
-      keys[qwerty.indexOf(yun)].style.visibility = 'visible'
+      console.log(sheng, yun);
+      console.log(keys);
+      jQuery(`#key${sheng.toUpperCase()}`).addClass('hint');
+      jQuery(`#key${yun}`).addClass('hint');
+      console.log(`marked #${jQuery(".hint").length} keys`);
     }
+
+
+
     this.updateKeysHintLayoutRatio()
   },
   updateKeysHintLayoutRatio() {
@@ -122,8 +127,6 @@ Shuang.app.setting = {
         left = OFFSET
       }
     }
-    $('.keys').style.zoom = keysHintRatio
-    $('.keys').style.left = left + 'px'
   },
   updateTips() {
     const tips = $('#tips')
@@ -138,7 +141,6 @@ Shuang.app.setting = {
         tips.appendChild(newLine)
       }
     }
-    $('#pic').setAttribute('src', `shuangpin-heatmap/svgs/dvorak/${this.config.scheme}.svg`)
   }
 }
 

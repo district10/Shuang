@@ -35,6 +35,5 @@
     "clean-css-cli": "^4.3.0",
     "html-minifier": "^4.0.0"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }

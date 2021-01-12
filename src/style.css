@@ -112,28 +112,38 @@ body {
 
 .keyboard .keys {
   position: absolute;
-  width: 680px;
   left: 0px;
   right: 0px;
-  margin: 10px auto;
   z-index: 2;
-  opacity: 0.2;
+  /* opacity: 0.2; */
+}
+
+.keyboard .keys .row-1 {
+  margin-left: 30px;
 }
 
 .keyboard .keys .row-2 {
-  margin-left: 33px
+  margin-left: 30px;
+  margin-top: 100px;
 }
 
 .keyboard .keys .row-3 {
-  margin-left: 66px;
+  margin-left: 30px;
+  margin-top: 120px;
 }
 
+/* .keyboard .keys .row-1 .key { border: 1px solid red; }
+.keyboard .keys .row-2 .key { border: 1px solid green; }
+.keyboard .keys .row-3 .key { border: 1px solid blue; } */
+
 .keyboard .keys .key {
-  width: 64.5px;
-  height: 66px;
-  float: left;
-  background-color: #007700;
-  visibility: hidden;
+  width: 30px;
+  height: 30px;
+  /* float: left; */
+  /* display: inline-block; */
+  /* background-color: #007700; */
+  /* border: 1px solid lightcoral; */
+  /* visibility: hidden; */
 }
 
 .keyboard .pic {
@@ -177,7 +187,7 @@ body {
 
 .manual p {
   color: #333;
-  font-size: 14px;
+  font-size: 9px;
   margin: 5px;
   display: inline-block;
 }
@@ -304,4 +314,12 @@ body {
   .dark-mode .menu select {
     color: #000 !important;
   }
+}
+
+#a {
+  font-family: Monaco, Menlo, Consolas, "Courier New", Monospace, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", STXihei, Heiti, sans-serif;
+}
+
+.hint {
+  font-size: 300%;
 }

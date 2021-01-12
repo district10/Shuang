@@ -431,13 +431,13 @@ Shuang.app.setting = {
     writeStorage('showPic', this.config.showPic)
   },
   setDarkMode(bool) {
-    this.config.darkMode = bool.toString()
-    if (this.config.darkMode === 'true') {
-      $('body').setAttribute('class', 'dark-mode')
-    } else if (this.config.darkMode === 'false') {
-      $('body').setAttribute('class', '')
-    }
-    writeStorage('darkMode', this.config.darkMode)
+    // this.config.darkMode = bool.toString()
+    // if (this.config.darkMode === 'true') {
+    //   $('body').setAttribute('class', 'dark-mode')
+    // } else if (this.config.darkMode === 'false') {
+    //   $('body').setAttribute('class', '')
+    // }
+    // writeStorage('darkMode', this.config.darkMode)
   },
   setAutoNext(bool) {
     this.config.autoNext = bool.toString()
@@ -453,14 +453,19 @@ Shuang.app.setting = {
     this.updateKeysHint()
   },
   updateKeysHint() {
-    const keys = $$('.key')
-    keys.forEach((key) => key.style.visibility = 'hidden')
     if (this.config.showKeys === 'false') return
-    const qwerty = 'qwertyuiopasdfghjkl;zxcvbnm'
+    console.log(`marked #${jQuery(".hint").length} keys`);
+    jQuery('.hint').removeClass('hint');
     for (const [sheng, yun] of Shuang.core.current.scheme) {
-      keys[qwerty.indexOf(sheng)].style.visibility = 'visible'
-      keys[qwerty.indexOf(yun)].style.visibility = 'visible'
+      console.log(sheng, yun);
+      console.log(keys);
+      jQuery(`#key${sheng.toUpperCase()}`).addClass('hint');
+      jQuery(`#key${yun}`).addClass('hint');
+      console.log(`marked #${jQuery(".hint").length} keys`);
     }
+
+
+
     this.updateKeysHintLayoutRatio()
   },
   updateKeysHintLayoutRatio() {
@@ -481,8 +486,6 @@ Shuang.app.setting = {
         left = OFFSET
       }
     }
-    $('.keys').style.zoom = keysHintRatio
-    $('.keys').style.left = left + 'px'
   },
   updateTips() {
     const tips = $('#tips')
@@ -497,7 +500,6 @@ Shuang.app.setting = {
         tips.appendChild(newLine)
       }
     }
-    $('#pic').setAttribute('src', `shuangpin-heatmap/svgs/dvorak/${this.config.scheme}.svg`)
   }
 }
 
@@ -549,12 +551,7 @@ Shuang.app.action = {
         .map(scheme => scheme.slice(0, -2))
     }
     const schemeOptions = [
-      { disabled: true, text: '常见' },
       ...schemes.common,
-      { disabled: true, text: '小众' },
-      ...schemes.uncommon,
-      { disabled: true, text: '爱好者' },
-      ...schemes.rare,
     ]
 
     renderSelect($('#scheme-select'), schemeOptions, value => {
@@ -583,9 +580,6 @@ Shuang.app.action = {
     $('#pic-switcher').addEventListener('change', e => {
       Shuang.app.setting.setPicVisible(e.target.checked)
     })
-    $('#dark-mode-switcher').addEventListener('change', e => {
-      Shuang.app.setting.setDarkMode(e.target.checked)
-    })
     $('#auto-next-switcher').addEventListener('change', e => {
       Shuang.app.setting.setAutoNext(e.target.checked)
     })
@@ -594,33 +588,6 @@ Shuang.app.action = {
     })
     $('#show-keys').addEventListener('change', e => {
       Shuang.app.setting.setShowKeys(e.target.checked)
-    })
-    $('.pay-name#alipay').addEventListener('mouseover', () => {
-      Shuang.app.action.qrShow('alipay-qr')
-    })
-    $('#alipay-qr').addEventListener('click', e => {
-      Shuang.app.action.qrHide(e.target)
-    })
-    $('#alipay-qr').addEventListener('mouseout', e => {
-      Shuang.app.action.qrHide(e.target)
-    })
-    $('.pay-name#wxpay').addEventListener('mouseover', () => {
-      Shuang.app.action.qrShow('wxpay-qr')
-    })
-    $('#wxpay-qr').addEventListener('click', e => {
-      Shuang.app.action.qrHide(e.target)
-    })
-    $('#wxpay-qr').addEventListener('mouseout', e => {
-      Shuang.app.action.qrHide(e.target)
-    })
-    $('#wx-name').addEventListener('mouseover', () => {
-      Shuang.app.action.qrShow('wx-qr')
-    })
-    $('#wx-qr').addEventListener('click', e => {
-      Shuang.app.action.qrHide(e.target)
-    })
-    $('#wx-qr').addEventListener('mouseout', e => {
-      Shuang.app.action.qrHide(e.target)
     })
     $('#dict').addEventListener('click', () => {
       Shuang.core.current.beforeJudge()
